@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+
+</head>
+<body>
+    <div class="background">
+      <!--Button-->
+      <h1>Нажмите чтобы открыть форму</h1>
+      <button class="open-button" id="openbtn" type="submit">Открыть</button>
+
+      <!--Form-->
+      <div class="popup-form" id="popup">
+        <h2>Ого!</h2>
+        <p>Вы открыли форму! Вы можете ввести данные и нажать "ОК" или закрыть форму нажав "Отмена"</p>
+        <form>
+          <input type="text" id="textinput">
+        </form>
+        <button type="button" class="ok-button" id="okbtn">OK</button>
+        <button class="cancel-button" id="cancelbtn">Отмена</button>
+      </div>
+    </div>
+    <div id="overlay"></div>
+
+    <script>
+      const myForm = document.getElementById("popup");
+      const openButton = document.getElementById("openbtn");
+
+      const okButton = document.getElementById("okbtn");
+      const cancelButton = document.getElementById("cancelbtn");
+      const overlay = document.getElementById("overlay");
+
+      openButton.onclick = function() {
+        myForm.classList.add('active');
+        overlay.classList.add('active');
+      }
+
+      okButton.onclick = function() {
+        let input = document.getElementById("textinput").value;
+        alert("Вы ввели: " + input);
+      }
+
+      cancelButton.onclick = function() {
+        myForm.classList.remove('active');
+        overlay.classList.remove('active');
+      }
+
+      document.body.addEventListener('keydown', function(e) {
+        if (e.key == "Escape") {
+          myForm.classList.remove('active');
+          overlay.classList.remove('active');
+        }
+      });
+
+    </script>
+</body>
+</html>
